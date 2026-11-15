@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -161,7 +163,7 @@
         }
 
         .news-item {
-            min-height: 145px;
+            min-height: auto;
 
             display: flex;
             align-items: center;
@@ -378,9 +380,9 @@
                 display: none;
             }
         }
-        #ms,msearch,movie {
+        #ms,movie {
         width: 200px;
-        height: 50px;
+        height: 30px;
         border: 1px solid black;
         display: inline-block; /* form이나 input을 감싸기 좋게 설정 */
     }
@@ -389,6 +391,11 @@
         align-items: center; /* 세로 가운데 정렬 */
         gap: 10px; /* 글자와 검색창 사이 간격 */
     }
+    #msearch{width: 100%; height: 100%;
+    border: none;          /* input 자체의 테두리는 없앰 (부모가 테두리를 가짐) */
+    outline: none;         /* 클릭 시 생기는 파란색 기본 테두리 제거 */
+    font-size: 15px;
+    background: transparent;}
 
     </style>
 </head>
@@ -453,7 +460,7 @@
             </p>
 
         </div>
-
+        <table>
         <h2 class="action">최신영화 : 액션</h2>
         <!-- NEWS LIST -->
         <div class="news-list">
@@ -464,18 +471,17 @@
                 <div class="number">16</div>
 
                 <div class="thumb">
-                {% load static %}
                     <img src="{% static 'munmu.jpg' %}" alt="문무">
                 </div>
 
                 <div class="news-content">
 
                     <h3>
-                        영화제목 : 문무
+                        문무
                     </h3>
 
                     <p>
-                        영화 줄거리 : 안 알려줌
+                        영화 줄거리 : 600년간 이어진 전쟁으로 혼란에 빠진 삼국. 한 작은 나라가 막강한 적들에 맞서, 분열된 땅을 통일하기 위한 싸움에 나선다.
                     </p>
                     <p>
                         영화 장르 : 액션
@@ -501,75 +507,52 @@
 
 
             <a href="#" class="news-item">
+            <div class="number">15</div>
+            
+            <div class="thumb">
+                <img src="{% static 'dyun.jpg' %}" alt="듄">
+            </div>
 
-                <div class="number">15</div>
+            <div class="news-content">
+                <h3>듄 : 파트2</h3>
+                <p>영화 줄거리 : 황제의 모략으로 멸문한 가문의 유일한 후계자 폴.(티모시 샬라메) 어머니 레이디 제시카(레베카 퍼거슨)와 간신히 목숨만 부지한 채 사막으로 도망친다. 그곳에서 만난 반란군들과 숨어 지내다 그들과 함께 황제의 모든 것을 파괴할 전투를 준비한다. 한편 반란군들의 기세가 높아질수록 불안해진 황제와 귀족 가문은 잔혹한 암살자 페이드 로타(오스틴 버틀러)를 보내 반란군을 몰살하려 하는데… 2월, 운명의 반격이 시작된다!</p>
+                <p>영화 장르 : 액션</p>
+                <p>감독 : 드니 빌뇌브</p>
+                <p>주요 출연배우 : 티모시 샬라메, 젠데이아</p>
+            </div>
 
-                <div class="thumb">
-                    <img
-                        src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e"
-                        alt="객실"
-                    >
-                </div>
-
-                <div class="news-content">
-
-                    <h3>
-                        편안한 여행을 위한 객실 서비스 안내
-                    </h3>
-
-                    <p>
-                        고객님의 편안한 휴식을 위한 새로운 서비스를 소개합니다.
-                    </p>
-
-                    <span class="date">
-                        2026.09.10
-                    </span>
-
-                </div>
-
-                <div class="category">
-                    FOREST
-                </div>
-
+            <div class="category">
+                개봉일 : 2026.11.14.
+            </div>
             </a>
 
 
             <a href="#" class="news-item">
+            <div class="number">14</div>
+            
+            <div class="thumb">
+                <img src="{% static 'david.jpg' %}" alt="다윗">
+            </div>
 
-                <div class="number">14</div>
+            <div class="news-content">
+                <h3> 다윗 </h3>
+                <p>영화 줄거리 : 평범한 목동 다윗, 두려움을 넘어 역사가 되다!
 
-                <div class="thumb">
-                    <img
-                        src="https://images.unsplash.com/photo-1510798831971-661eb04b3739"
-                        alt="자연 속 휴식"
-                    >
-                </div>
+소년 다윗은 어느 날 선지자 사무엘로부터 왕이 될 운명을 듣게 되지만, 그것이 무엇을 의미하는지 알기도 전에 전쟁의 한가운데로 내던져진다. 모두가 숨을 죽인 전장, 세상이 두려워한 거인 골리앗 앞에 홀로 선 다윗은 단 하나의 돌로 마침내 그를 쓰러뜨린다.
 
-                <div class="news-content">
+기적 같은 승리 이후, 그는 단숨에 영웅이 되지만 그 이름은 곧 사울 왕의 분노를 깨운다. 또다시 거대한 위협 앞에 맞서게 된 다윗은 자신에게 주어진 운명의 무게와 마주하게 되는데...                <p>영화 장르 : 액션</p>
+                <p>감독 : 필 커닝햄</p>
+                <p>주요 출연배우 : 필 위컴, 브랜던 잉먼, 아심 찬드리</p>
+            </div>
 
-                    <h3>
-                        자연 속에서 즐기는 특별한 휴식 프로그램
-                    </h3>
+            <div class="category">
+                개봉일 : 2026.11.17.
+            </div>
 
-                    <p>
-                        숲과 함께하는 다양한 프로그램을 경험해보세요.
-                    </p>
-
-                    <span class="date">
-                        2026.09.05
-                    </span>
-
-                </div>
-
-
-
-                <div class="category">
-                    FOREST
-                </div>
-
-            </a>
-                        <div class="number"><h2 class="action">최신영화 : 드라마</h2></div>
-
+            <table>
+        <h2 class="action">최신영화 : 드라마</h2>
+        <!-- NEWS LIST -->
+        <div class="news-list">
 
 
             <a href="#" class="news-item">
@@ -577,32 +560,20 @@
                 <div class="number">13</div>
 
                 <div class="thumb">
-                    <img
-                        src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
-                        alt="가을 풍경"
-                    >
-                </div>
+                <img src="{% static 'moon.jpg' %}" alt="아름다운 초저녁달">
+            </div>
 
-                <div class="news-content">
+            <div class="news-content">
+                <h3> 아름다운 초저녁달 </h3>
+                <p>영화 줄거리 : 평큰 키와 시크한 외모로 교내 여학생들의 ‘왕자님’인 요이. 어느 날 또 다른 ‘왕자님’, 코하쿠와 운명처럼 부딪친다. “아름다운 존재는 계속 바라보고 싶어지잖아”라며 거침없이 다가오는 코하쿠의 제안은 뜻밖에도 “시험 삼아 사귀어 보는” 계약 연애였다!! 사랑을 모르는 소년과 사랑이 어울리지 않던 소녀의 설렘 폭발 계약 연애가 시작된다.
+                                   <p>영화 장르 : 액션</p>
+                <p>감독 : 타케무라 켄타로</p>
+                <p>주요 출연배우 : 미치에다 슌스케, 안자이 세이라, 미즈사와 린타로</p>
+            </div>
 
-                    <h3>
-                        가을 시즌 특별 패키지 출시
-                    </h3>
-
-                    <p>
-                        아름다운 가을 풍경과 함께하는 특별한 여행을 준비했습니다.
-                    </p>
-
-                    <span class="date">
-                        2026.08.28
-                    </span>
-
-                </div>
-
-                <div class="category">
-                    FOREST
-                </div>
-
+            <div class="category">
+                개봉일 : 2026.11.17.
+            </div>
             </a>
 
 
@@ -611,35 +582,141 @@
                 <div class="number">12</div>
 
                 <div class="thumb">
-                    <img
-                        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b"
-                        alt="산 풍경"
-                    >
-                </div>
+                <img src="{% static 'drama.jpg' %}" alt="드라마">
+            </div>
 
-                <div class="news-content">
+            <div class="news-content">
+                <h3> 드라마 </h3>
+                <p>영화 줄거리 : “왜 나쁜 짓 한 번 안 한 사람처럼 그래?”
 
-                    <h3>
-                        더욱 편리해진 리조트 이용 안내
-                    </h3>
+결혼식을 일주일 앞둔 행복한 커플 엠마(젠데이아)와 찰리(로버트 패틴슨). 우연히 알게 된 상대방의 비밀로 인해 단단했던 믿음이 흔들린다. 첫만남부터 서로를 완벽히 안다고 생각했던 두 사람, 작은 균열은 걷잡을 수 없이 커진 채 모두의 모습을 비추고…
 
-                    <p>
-                        고객 여러분께 보다 편리한 서비스를 제공해 드립니다.
-                    </p>
+2026년 가을을 뒤흔들 로맨스릴러.
+당신을 정중히 초대합니다.
+               <p>영화 장르 : 드라마</p>
+                <p>감독 : 크리스토퍼 보글리</p>
+                <p>주요 출연배우 : 젠데이아, 로버트 패틴슨, 알라나 하임</p>
+            </div>
 
-                    <span class="date">
-                        2026.08.20
-                    </span>
+            <div class="category">
+                개봉일 : 2026.11.17.
+            </div>
+            </a>
+            
+            <a href="#" class="news-item">
 
-                </div>
+                <div class="number">11</div>
 
-                <div class="category">
-                    FOREST
-                </div>
+                <div class="thumb">
+                <img src="{% static 'swinggirls.jpg' %}" alt="스윙걸스">
+            </div>
 
+            <div class="news-content">
+                <h3> 스윙걸스 </h3>
+                <p>영화 줄거리 : “빅밴드 재즈? 그게 뭐하는 건데?”
+
+지루한 보충수업을 째고 싶었을 뿐, 토모코(색소폰)
+야구부 선배에게 홀딱 반했을 뿐, 요시에(트럼펫)
+남들보다 폐활량이 뛰어났을 뿐, 세키구치(트럼본)
+어쩌다 친구 따라왔을 뿐, 나오미(드럼)
+심벌즈가 적성에 안 맞았을 뿐, 나카무라(피아노)
+짝사랑하는 재즈 덕후일 뿐, 수학 선생님(지휘)
+
+대단한 이유 없음! 눈부신 재능 없음! 거창한 목표 없음!
+그래서 우린 스윙한다♬ 그 누구보다 재미있게♬                <p>영화 장르 : 드라마</p>
+                <p>감독 : 야구치 시노부</p>
+                <p>주요 출연배우 : 우에노 주리, 히라오카 유타, 칸지야 시호리</p>
+            </div>
+
+            <div class="category">
+                개봉일 : 2026.11.18.
+            </div>
             </a>
 
         </div>
+        </table>
+
+        <table>
+        <h2 class="action">최신영화 : 드라마</h2>
+        <!-- NEWS LIST -->
+        <div class="news-list">
+
+
+            <a href="#" class="news-item">
+
+                <div class="number">10</div>
+
+                <div class="thumb">
+                <img src="{% static 'david.jpg' %}" alt="다윗">
+            </div>
+
+            <div class="news-content">
+                <h3> 다윗 </h3>
+                <p>영화 줄거리 : 평범한 목동 다윗, 두려움을 넘어 역사가 되다!
+
+소년 다윗은 어느 날 선지자 사무엘로부터 왕이 될 운명을 듣게 되지만, 그것이 무엇을 의미하는지 알기도 전에 전쟁의 한가운데로 내던져진다. 모두가 숨을 죽인 전장, 세상이 두려워한 거인 골리앗 앞에 홀로 선 다윗은 단 하나의 돌로 마침내 그를 쓰러뜨린다.
+
+기적 같은 승리 이후, 그는 단숨에 영웅이 되지만 그 이름은 곧 사울 왕의 분노를 깨운다. 또다시 거대한 위협 앞에 맞서게 된 다윗은 자신에게 주어진 운명의 무게와 마주하게 되는데...                <p>영화 장르 : 액션</p>
+                <p>감독 : 필 커닝햄</p>
+                <p>주요 출연배우 : 필 위컴, 브랜던 잉먼, 아심 찬드리</p>
+            </div>
+
+            <div class="category">
+                개봉일 : 2026.11.17.
+            </div>
+            </a>
+
+
+            <a href="#" class="news-item">
+
+                <div class="number">9</div>
+
+                <div class="thumb">
+                <img src="{% static 'david.jpg' %}" alt="다윗">
+            </div>
+
+            <div class="news-content">
+                <h3> 다윗 </h3>
+                <p>영화 줄거리 : 평범한 목동 다윗, 두려움을 넘어 역사가 되다!
+
+소년 다윗은 어느 날 선지자 사무엘로부터 왕이 될 운명을 듣게 되지만, 그것이 무엇을 의미하는지 알기도 전에 전쟁의 한가운데로 내던져진다. 모두가 숨을 죽인 전장, 세상이 두려워한 거인 골리앗 앞에 홀로 선 다윗은 단 하나의 돌로 마침내 그를 쓰러뜨린다.
+
+기적 같은 승리 이후, 그는 단숨에 영웅이 되지만 그 이름은 곧 사울 왕의 분노를 깨운다. 또다시 거대한 위협 앞에 맞서게 된 다윗은 자신에게 주어진 운명의 무게와 마주하게 되는데...                <p>영화 장르 : 액션</p>
+                <p>감독 : 필 커닝햄</p>
+                <p>주요 출연배우 : 필 위컴, 브랜던 잉먼, 아심 찬드리</p>
+            </div>
+
+            <div class="category">
+                개봉일 : 2026.11.17.
+            </div>
+            </a>
+
+            <a href="#" class="news-item">
+
+                <div class="number">8</div>
+
+                <div class="thumb">
+                <img src="{% static 'david.jpg' %}" alt="다윗">
+            </div>
+
+            <div class="news-content">
+                <h3> 다윗 </h3>
+                <p>영화 줄거리 : 평범한 목동 다윗, 두려움을 넘어 역사가 되다!
+
+소년 다윗은 어느 날 선지자 사무엘로부터 왕이 될 운명을 듣게 되지만, 그것이 무엇을 의미하는지 알기도 전에 전쟁의 한가운데로 내던져진다. 모두가 숨을 죽인 전장, 세상이 두려워한 거인 골리앗 앞에 홀로 선 다윗은 단 하나의 돌로 마침내 그를 쓰러뜨린다.
+
+기적 같은 승리 이후, 그는 단숨에 영웅이 되지만 그 이름은 곧 사울 왕의 분노를 깨운다. 또다시 거대한 위협 앞에 맞서게 된 다윗은 자신에게 주어진 운명의 무게와 마주하게 되는데...                <p>영화 장르 : 액션</p>
+                <p>감독 : 필 커닝햄</p>
+                <p>주요 출연배우 : 필 위컴, 브랜던 잉먼, 아심 찬드리</p>
+            </div>
+
+            <div class="category">
+                개봉일 : 2026.11.17.
+            </div>
+            </a>
+
+        </div>
+        </table>
 
 
         <!-- WRITE BUTTON -->
