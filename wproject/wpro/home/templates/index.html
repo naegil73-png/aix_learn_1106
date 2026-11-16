@@ -5,33 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        function calBtn({
-            alert('생선 무게를 계산합니다.')
-
-        })
-    #calcu {
-        cursor: pointer;
-    }
-    #calcu:hover {
-        background-color: #0056b3;
-        color: white;
-    }
+        #calcu {
+            cursor: pointer;
+        }
+        #calcu:hover {
+            background-color: #0056b3;
+            color: white;
+        }
     </style>
+    <script>
+        function calBtn(){
+            alert('생선 무게를 계산합니다.');
+            const length = document.getElementById('length').value;
+            const width = document.getElementById('width').value;
+            const thick = document.getElementById('thick').value;
+
+            if(!length || !width || !thick){
+                alert('모두 입력해주세요');
+                return;
+            }
+
+            const formData = new FormData(document.getElementById('frm'));
+
+            // [수정됨] 1. Django가 생성한 CSRF 토큰 값을 자바스크립트 변수로 가져옵니다.
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch("", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrfToken // 2. 여기서 변수를 정상적으로 사용합니다.
+                },
+                body: formData
+            })
+            .then(response => response.json()) 
+            .then(data => {
+                // 성공적으로 받아오면 팝업창으로 결과 출력
+                alert(`예측된 생선 무게는 ${data.predict_result}g 입니다.`);
+            })
+            .catch(error => {
+                console.error('에러 발생:', error);
+                alert('계산 중 오류가 발생했습니다.');
+            });
+        } // [수정됨] 함수의 끝은 여기서 닫혀야 합니다.
+    </script>
 </head>
 <body>
     <h1>메인페이지</h1>
     <p> 생선정보를 입력하세요</p>
-    <form action = 'index' name='frm' id='frm'>
+    <form name='frm' method='post' id='frm'>
         {% csrf_token %}
         <label>길이</label>
-        <input type="text" name = 'length' id = 'length' placeholder='길이를 입력하세요' required>
+        <input type="text" name='length' id='length' placeholder='길이를 입력하세요' required><br><br>
         <label>너비</label>
-        <input type="text" name = 'width' id = 'width' placeholder='너비를 입력하세요' required>
+        <input type="text" name='width' id='width' placeholder='너비를 입력하세요' required><br><br>
         <label>두께</label>
-        <input type="text" name = 'thick' id = 'thick' placeholder='두께를 입력하세요' required>
-        <button type='button' onclick = calBtn() name = "calcu" id = "calcu" value='제출'>제출</button>
-        
+        <input type="text" name='thick' id='thick' placeholder='두께를 입력하세요' required><br><br>
+        <button type='button' onclick="calBtn()" name="calcu" id="calcu" value='제출'>제출</button>        
     </form>
 
+    <div class="result_area">
+        {% if predict_result %}
+        생선무게 : {{predict_result}}g
+        {% else %}
+        값을 입력하세요.
+        {% endif %}
+    </div>
 </body>
 </html>
