@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생선 무게 예측</title>
+    <style></style>
+    <script>
+        function calBtn(){
+            // 입력창의 값 가져오기
+            const length = document.getElementById('length').value;
+            const width = document.getElementById('width').value;
+            const thick = document.getElementById('thick').value;
+            const csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        
+            if(!length || !width || !thick){
+                alert("모든 값을 입력해 주세요!");
+                return;
+            }
+            alert("생선 무게를 예측합니다.")
+            const formData = new FormData(); // FormData는 데이터를 웹에서 서버로 보낼 때 사용하는 객체
+            formData.append('length',length);
+            formData.append('width',width);
+            formData.append('thick',thick);
+
+            fetch("", {                  //fetch는 서버로 자료를 보내고, 결과를 받아 화면에 띄워주는 역할. 현재주소("")에서 발송정보와 보안토큰을 가지고 서버로 출발  
+                method:"POST",
+                headers: {
+                "X-CSRFToken": csrf_token
+                },
+                body:formData
+            })
+            .then(response => response.json())  // 서버에서 보낸 답장을 json형태로 변환
+            .then(data => {                     // 서버가 보내준 데이터 안에는 result가 들어 있다.
+                alert("예측된 생선의 무게는 " + data.result + "g입니다!");
+                document.getElementById('result-area').innerText = "생선무게 :" + data.result + "g";
+                // 
+            })
+            .catch(error => {
+                console.error('Error:',error);
+                alert("계산 중 오류가 발생했습니다.");
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>메인페이지</h1>
+    <p>생선 정보 입력</p>
+    <form id="frm" name="frm" method="post">
+        {% csrf_token %}
+        <label>길이</label>
+        <input type='text' id="length" name="length" required>
+        <label>너비</label>
+        <input type='text' id="width" name="width" required>
+        <label>두께</label>
+        <input type='text' id="thick" name="thick" required>
+        <button type="button" onclick="calBtn()">제출</button>
+    </form>
+    <div id = "result-area">
+        {% if predict_result %}
+        생선무게 : {{predict_result}}
+        {% else %}
+        생선 정보를 입력하세요
+        {% endif %}
+    </div>
+</body>
+</html>
