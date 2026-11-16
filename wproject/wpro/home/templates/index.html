@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        function calBtn({
+            alert('생선 무게를 계산합니다.')
+
+        })
+    #calcu {
+        cursor: pointer;
+    }
+    #calcu:hover {
+        background-color: #0056b3;
+        color: white;
+    }
+    </style>
+</head>
+<body>
+    <h1>메인페이지</h1>
+    <p> 생선정보를 입력하세요</p>
+    <form action = 'index' name='frm' id='frm'>
+        {% csrf_token %}
+        <label>길이</label>
+        <input type="text" name = 'length' id = 'length' placeholder='길이를 입력하세요' required>
+        <label>너비</label>
+        <input type="text" name = 'width' id = 'width' placeholder='너비를 입력하세요' required>
+        <label>두께</label>
+        <input type="text" name = 'thick' id = 'thick' placeholder='두께를 입력하세요' required>
+        <button type='button' onclick = calBtn() name = "calcu" id = "calcu" value='제출'>제출</button>
+        
+    </form>
+
+</body>
+</html>

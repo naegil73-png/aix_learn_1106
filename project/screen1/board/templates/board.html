@@ -380,23 +380,36 @@
                 display: none;
             }
         }
-        #ms,movie {
-        width: 200px;
-        height: 30px;
-        border: 1px solid black;
-        display: inline-block; /* form이나 input을 감싸기 좋게 설정 */
+        #ms{
+            display: inline-flex;
+            align-items : center;
+            width: 320px;
+            height: 38px;
+            border: 1px solid #333
+            box-sizing: border-box;
+            overflow: hidden;
+            gap:0;
+        }
+        #movie {
+        flex:1;
+        height: 100%;
+        min-width: 0;
+        margin:0;
     }
-            li.search-item {
+        li.search-item {
         display: flex;
         align-items: center; /* 세로 가운데 정렬 */
         gap: 10px; /* 글자와 검색창 사이 간격 */
     }
-    #msearch{width: 100%; height: 100%;
-    border: none;          /* input 자체의 테두리는 없앰 (부모가 테두리를 가짐) */
-    outline: none;         /* 클릭 시 생기는 파란색 기본 테두리 제거 */
-    font-size: 15px;
-    background: transparent;}
-
+    #msearch {
+    width: 230px;
+    height: 100%;
+    border: 1px solid #333;
+    outline: none;
+    padding: 0 10px;
+    font-size: 13px;
+    box-sizing: border-box;}
+    #searchType{height:100%;}
     </style>
 </head>
 
@@ -418,12 +431,17 @@
 <li><a href="#">문의</a></li>
 
 <li class="search-item">
-        <label for="msearch">검색</label>
-        <div id="ms">
-            <form action="#" role="search" id = 'movie''>
-                <input type="text" id="msearch" name="msearch" placeholder="콘텐츠,인물,컬렉션,유저,매거진 검색" style="width: 100%; height: 100%; border: none; box-sizing: border-box;">
-            </form>
-        </div>
+<div id="ms">
+    <select id="searchType" name="searchType">
+        <option value="all">전체</option>
+        <option value="genre">장르</option>
+        <option value="title">제목</option>
+        <option value="plot">줄거리</option></select>
+    <form action="#" role="search" id="movie"> {% csrf_token %}
+        <input type="text" id="msearch" name="msearch" placeholder="콘텐츠,인물,컬렉션,유저,매거진 검색">
+    </form>
+    <button type="button" class="search-btn" onclick="searchBtn()">검색</button>
+</div>
     </li>
 </ul>
 </div>
@@ -637,7 +655,7 @@
         </table>
 
         <table>
-        <h2 class="action">최신영화 : 드라마</h2>
+        <h2 class="action">최신영화 : 스릴러</h2>
         <!-- NEWS LIST -->
         <div class="news-list">
 
@@ -647,22 +665,26 @@
                 <div class="number">10</div>
 
                 <div class="thumb">
-                <img src="{% static 'david.jpg' %}" alt="다윗">
+                <img src="{% static 'othermommy.jpg' %}" alt="아더마미 ">
             </div>
 
             <div class="news-content">
-                <h3> 다윗 </h3>
-                <p>영화 줄거리 : 평범한 목동 다윗, 두려움을 넘어 역사가 되다!
+                <h3> 아더 마미 </h3>
+                <p>일에 쫓겨 늘 집을 비우는 엄마 ‘어슐라’와 집안을 돌보는 아빠 ‘러셀’ 사이에서 자란 어린 소녀 ‘벨라’는 어느 날 자신의 방에서 엄마와 똑같이 생긴 존재 ‘아더 마미’를 마주한다.
 
-소년 다윗은 어느 날 선지자 사무엘로부터 왕이 될 운명을 듣게 되지만, 그것이 무엇을 의미하는지 알기도 전에 전쟁의 한가운데로 내던져진다. 모두가 숨을 죽인 전장, 세상이 두려워한 거인 골리앗 앞에 홀로 선 다윗은 단 하나의 돌로 마침내 그를 쓰러뜨린다.
+“네 마음속으로 들어가도 될까?”
 
-기적 같은 승리 이후, 그는 단숨에 영웅이 되지만 그 이름은 곧 사울 왕의 분노를 깨운다. 또다시 거대한 위협 앞에 맞서게 된 다윗은 자신에게 주어진 운명의 무게와 마주하게 되는데...                <p>영화 장르 : 액션</p>
-                <p>감독 : 필 커닝햄</p>
-                <p>주요 출연배우 : 필 위컴, 브랜던 잉먼, 아심 찬드리</p>
+정체불명의 존재는 ‘벨라’에게 같은 질문을 반복하고, 점차 ‘벨라’는 물론 가족 전체의 일상에 깊숙이 파고들기 시작하는데…
+
+가장 믿었던 존재가
+가장 무서운 공포가 되다
+                <p>영화 장르 : 스릴러</p>
+                <p>감독 : 롭 세비지</p>
+                <p>주요 출연배우 : 제시카 차스테인, 아라벨라 올리비아 클라크, 제이 듀플레스</p>
             </div>
 
             <div class="category">
-                개봉일 : 2026.11.17.
+                개봉일 : 2026.11.18.
             </div>
             </a>
 
