@@ -1,0 +1,10 @@
+wpro02 프로젝트 - home,board
+index.html
+
+생선의 무게, 길이,대각선, 높이, 넓이를
+입력받아
+
+예측 생선 : Bream (예측확률 : 0.872)
+전체 그래프를 출력하시오.
+[‘Bream’, ‘Parkki’, ‘Perch’, ‘Pike’, ‘Roach’, ‘Smelt’, ‘Whitefish’]
+[0.872 0.113 0.    0.    0.006 0.    0.008]
