@@ -1,0 +1,100 @@
+오라클
+
+
+cmd창 
+
+
+C:\Users\mbc>sqlplus system/oracle
+
+사용자명 입력: c##ora_user1
+비밀번호 입력:
+
+C:\>cd backup
+
+C:\backup>imp ora_user/1111 file=expall.dmp log=empall.log ignore=y grants=y rows=y indexes=y full=y
+
+C:\backup>imp ora_user/1111 file=expcust.dmp log=expcust.log ignore=y grants=y rows=y indexes=y full=y
+
+C:\backup>sqlplus
+
+사용자명 입력: ora_user
+비밀번호 입력:
+마지막 성공한 로그인 시간: 
+
+SQL> insert into member values('ccc','1111','강감찬','010-2222-2222')
+
+
+
+오라클 실행 창
+
+select * from employees;
+
+-- select문 : 검색 기능
+-- insert문 : 입력 기능
+-- update문 : 수정 기능
+-- delete문 : 삭제 기능
+
+-- sql언어 : 
+ -- ddl(테이블 관할언어, 복구 불가) - create, alter, drop
+ -- dml(실행취소(commit rollback) 가능, 명령구문 마지막에 commit을 해야 실행됨) - 주요 업무권한일 듯
+ -- dcl(권한부여)
+ 
+ select * from employees;
+ select employee_id, emp_name from employees;
+ 
+drop table member; -- 실행하면 복구 불가
+ 
+ 
+create table member(
+id varchar2(20) primary key, 
+pw varchar2(100) not null,
+name varchar2(50),
+phone varchar2(20)
+);
+
+select * from member;
+insert into member(id,pw,name,phone) values(
+'aaa','1111','홍길동','010-1111-1111'
+);
+
+
+insert into member values (
+'bbb','1111','유관순','010-1111-1111'
+);
+
+insert into member values (
+'ddd','1111','이순신','010-1111-1111'
+);
+
+select * from member;
+commit;
+
+
+-- 삭제
+
+delete from member;
+
+select * from member;
+commit;
+rollback;
+
+
+delete from member where id='ccc';
+
+select * from member;
+commit;
+rollback;
+
+
+-- 수정
+
+-- 아랫줄과 같이 하면 모든 비번이 0000이 됨
+update member set pw='0000'; 
+-- ccc만 비번을 0000으로 변경
+update member set pw='0000' where id ='ccc';
+
+update member set pw='4444' where id ='ddd';
+
+select * from member;
+commit;
+rollback;
