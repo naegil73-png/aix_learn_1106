@@ -30,5 +30,5 @@ model = make_pipeline(
 
 model.fit(train_data,train_label)
 
-joblib.dump(model,'model.joblib') # dump는 파일을 하드디스크에 저장하는 것
+joblib.dump(model,'model.joblib') # dump는 파일을 하드디스크에 저장하는 것(불려오는 파일은 dump)
 print('model.joblib파일이 생성되었습니다.')
